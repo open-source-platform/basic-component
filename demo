@@ -1,0 +1,49 @@
+# 一、介绍
+
+根据不同的场景，apolloconfig部署的架构会有很多种，这里不讨论细节，仅从部署架构的宏观角度，来介绍各种部署的方案
+
+## 1.1 flowchart
+
+用flowchart来表达部署方式，这里先介绍一些基本的概念
+
+### 1.1.1 依赖关系
+
+依赖关系用
+
+```mermaid
+graph LR
+	1 --> 2
+```
+
+表示1依赖2，也就是2必须存在，1才可以正常工作，例如
+
+```mermaid
+flowchart LR
+	应用 --> MySQL
+```
+
+表示应用需要使用MySQL才可以正常工作
+
+依赖关系可能会比较复杂，以及存在多层级的依赖，例如
+
+```mermaid
+flowchart LR
+	服务A --> 注册中心
+	服务A --> 服务B --> MySQL
+	服务A --> Redis
+```
+
+服务A需要注册中心，服务B，Redis
+
+并且服务B需要MySQL
+
+### 1.1.2 包含关系
+
+包含关系用
+
+```mermaid
+graph
+	subgraph a
+		b
+	end
+```
